@@ -5,12 +5,16 @@
 
 // 矩阵点乘
 __global__ void matrixDotProduct(int8_t *matrixA, int8_t *matrixB, int8_t *result, int numRows, int numCols) {
-    int index = threadIdx.x + blockIdx.x * blockDim.x;
+    int nRow = blockIdx.y * blockDim.y + threadIdx.y;
+    int nCol = blockIdx.x * blockDim.x + threadIdx.x;
+    int8_t dotProduct = 0;
 
-    if (index < numRows * numCols) {
-        int row = index / numCols;
-        int col = index % numCols;
-        result[index] = matrixA[index] * matrixB[index];
+    for (int i = 0; i < numCols; i++) {
+        dotProduct += matrixA[nRow * numCols + i] * matrixB[i * numCols + nCol];
+    }
+
+    if (nRow < numRows && nCol < numCols) {
+        result[nRow * numCols + nCol] = dotProduct;
     }
 }
 
