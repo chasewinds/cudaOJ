@@ -1,6 +1,5 @@
 ## Personal CUDA Learning Notes
 
-- More exercises will be updated gradually
+```More exercises will be updated gradually```
 
-Best Regard 
-RuiQi
+###### Best Regard RuiQi
