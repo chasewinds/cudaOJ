@@ -97,8 +97,7 @@ void testConvolution(
 
     // 假设使用A10， 40个SM单元
     dim3 threadsPerBlock(16, 16);
-    dim3 numBlocks((imageWidth + threadsPerBlock.x - 1) / threadsPerBlock.x, 
-                    (imageHeight + threadsPerBlock.y - 1) / threadsPerBlock.y, 1);
+    dim3 numBlocks(imageWidth / threadsPerBlock.x, imageHeight / threadsPerBlock.y);
 
     // kernel launch！
     convHalfWithoutPadding<<<numBlocks, threadsPerBlock>>>(
