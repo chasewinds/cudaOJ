@@ -128,5 +128,5 @@ int main() {
     checkCudaErrors(cudaFree(d_C));
     checkCudaErrors(cudaEventDestroy(start));
     checkCudaErrors(cudaEventDestroy(stop));
-    reutrn 0;
+    return 0;
 }
